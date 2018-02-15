@@ -1,0 +1,90 @@
+body {
+
+    padding-top: 5px;
+    padding-bottom: 120px;
+
+}
+#box {
+       
+ position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  border: 2px solid #178a29;
+     
+
+
+}
+
+h4{
+	
+    color: firebrick;
+        font-size: 1vw;
+        margin-top: 20px;
+        margin-left: 250px;
+}
+h2{
+	margin-left: 20px;
+        font-size: 1.7vw;
+    
+}
+
+
+
+img {
+width:20%;
+height:20%; 
+display: block;
+margin: 0 auto;
+}
+
+
+.button1 {
+margin-left: 180px;
+width: 50%;
+background: linear-gradient(#178a29, #175a29);
+border: 1px solid #67b100;
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+border-radius: 3px;
+text-decoration: none;
+color: #fff;
+font-family: Calibri, Verdana, Arial, sans-serif;
+font-size: 18px;
+    font-size: 1vw;
+       position: static;
+  width: 300px;
+  height: 50px;
+outline: none;
+padding: 10px;
+position: relative;
+
+}
+
+.form-control-feedback  {
+    color: #fff;
+    background: #178a29;  
+}
+
+input[type="text"]{
+  margin-left: 20px;
+  width:95%;
+  border: 2px solid #178a29;
+  
+    
+}
+input[type="password"]{
+  margin-left: 20px;
+  width:95%;
+  border: 2px solid #178a29;
+  
+    
+}
+
+.margin{
+	margin-left: 20px;
+}

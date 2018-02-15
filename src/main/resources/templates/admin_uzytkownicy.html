@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Panel Administratora</title>
+	<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="all"  href="../css/main.css"  th:href="@{/css/main.css}" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="headerwrap">
+        <div id="header">
+            <p>Panel administratora</p>
+        </div>
+        </div>
+
+        <div id="leftcolumnwrap">
+        	<div id="leftcolumn">
+            <ul class="nav navbar-nav">
+                <li><a  th:href="@{/admin}">Strona główna</a></li>     
+                <li ><a  th:href="@{/admin_dzialki}">Zarządzanie działkami</a></li>
+                <li ><a  th:href="@{/admin_liczniki}">Liczniki</a></li>                         
+                <li class="active"><a  th:href="@{/admin_uzytkownicy}">Użytkownicy</a></li>
+                <li	><a  th:href="@{/admin_dokumenty}">Dokumenty​</a></li>
+                <li ><a  th:href="@{/admin_wyciagi}">Wyciągi</a></li>
+                <li ><a  th:href="@{/admin_raport}">Raporty</a></li>
+                <li><a th:href="@{/login?logout}" onclick="$('#form').submit();">Wyloguj</a>
+                    <form style="visibility: hidden" id="form" method="post"  th:action="@{/logout}"></form>
+                </li>
+             </ul>
+        	</div>
+        </div>
+        <div id="contentwrap">
+        <div id="content">
+		<p>Użytkownicy</p>
+        </div>
+        </div>
+        <div id="footerwrap">
+        <div id="footer">
+            <p>UTP 2017/2018</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
