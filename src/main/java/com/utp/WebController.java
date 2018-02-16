@@ -1,7 +1,16 @@
 package com.utp;
 
+import static com.utp.parser.XlsParser.readFromExcelAndSaveToDatabase;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class WebController {
@@ -33,6 +42,14 @@ public class WebController {
     public String admin_dokumenty(){
         return "admin_dokumenty";
     }
+         
+         @PostMapping("/migration")
+         public String handleFileUpload(@RequestParam("file") MultipartFile file,
+                 RedirectAttributes redirectAttributes) throws IOException, Exception {
+             readFromExcelAndSaveToDatabase((FileInputStream) file.getInputStream());
+                   return "admin_dokumenty";  
+         }
+         
          @RequestMapping(value="/admin_wyciagi")
     public String admin_wyciagi(){
         return "admin_wyciagi";

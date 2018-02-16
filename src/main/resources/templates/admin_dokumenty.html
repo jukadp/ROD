@@ -32,7 +32,38 @@
         </div>
         <div id="contentwrap">
         <div id="content">
-		<p>DOKUMENTY</p>
+		
+<div th:fragment="wybor_pliku">
+        <center><div class="container">
+
+        <form method="POST" enctype="multipart/form-data" th:action="@{/migration}">
+           
+                 <h3>Wybór pliku dla migracji danych z xls do bazy danych:</h3> 
+
+			<table>
+				<tr><td><input type="file" id="filestyle"  name="file"/></td></tr>
+                            
+                                <tr><td></td><td><input class="button1" type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+                
+                
+                
+
+	</div>
+        </center> 
+  
+
+
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li>
+		</ul>
+	</div>
+        </div>
+
         </div>
         </div>
         <div id="footerwrap">
