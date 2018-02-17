@@ -1,7 +1,7 @@
 package com.model.imp;
 
 
-import  com.model.Dzialki;
+import  com.model.NumerRachunku;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -9,22 +9,21 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.utp.HibernateUtil;
-import com.model.Wlasciciel;
 
 
-import com.model.inter.InterDzialki;
+import com.model.inter.InterNumerRachunku;
 
 
-public class ImplDzialki implements InterDzialki {
+public class ImplNumerRachunku implements InterNumerRachunku {
 
 
     @Override
-    public void add(Dzialki dzialki) {
+    public void add(NumerRachunku iban) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.save(dzialki);
+            session.save(iban);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -44,8 +43,8 @@ public class ImplDzialki implements InterDzialki {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            Dzialki dzialki = (Dzialki) session.load(Dzialki.class, new Long(id));
-            session.delete(dzialki);
+            NumerRachunku iban = (NumerRachunku) session.load(NumerRachunku.class, new Long(id));
+            session.delete(iban);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -61,12 +60,12 @@ public class ImplDzialki implements InterDzialki {
            
       
     @Override
-    public void update(Dzialki dzialki) {
+    public void update(NumerRachunku iban) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.update(dzialki);
+            session.update(iban);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -79,13 +78,13 @@ public class ImplDzialki implements InterDzialki {
         }
     }
 
-    public List<Dzialki> getAll() {
-        List<Dzialki> users = new ArrayList<Dzialki>();
+    public List<NumerRachunku> getAll() {
+        List<NumerRachunku> users = new ArrayList<NumerRachunku>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            users = session.createQuery("from Dzialki").list();
+            users = session.createQuery("from Iban").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -98,44 +97,23 @@ public class ImplDzialki implements InterDzialki {
    
     
     
-    public Dzialki getById(Long nr_dzialki) {
-        Dzialki dzialki = null;
+    public NumerRachunku getById(int nr_dzialki) {
+        NumerRachunku iban = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_dzialki= :nr_dzialki";
+            String queryString = "from Iban where nr_dzialki= :nr_dzialki";
             Query query = session.createQuery(queryString);
-            query.setLong("nr_dzialki", nr_dzialki);
-            dzialki = (Dzialki) query.uniqueResult();
+            query.setInteger("nr_dzialki", nr_dzialki);
+            iban = (NumerRachunku) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return dzialki;
+        return iban;
     }
-    
-    
-       public Dzialki getByIdDzialkowicz(Long nr_czlonkowski)
-   {
-        Dzialki dzialki = null;
-        Transaction trns = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_czlonkowski= :nr_czlonkowski";
-            Query query = session.createQuery(queryString);
-            query.setLong("nr_czlonkowski", nr_czlonkowski);
-            dzialki = (Dzialki) query.uniqueResult();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        } finally {
-            session.flush();
-            session.close();
-        }
-        return dzialki;
-    }
-    
+   
 }

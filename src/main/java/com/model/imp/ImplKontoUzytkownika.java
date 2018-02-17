@@ -1,7 +1,7 @@
 package com.model.imp;
 
 
-import  com.model.Dzialki;
+import  com.model.KontoUzytkownika;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -9,22 +9,21 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.utp.HibernateUtil;
-import com.model.Wlasciciel;
 
 
-import com.model.inter.InterDzialki;
 
+import com.model.inter.InterKontoUzytkownika;
 
-public class ImplDzialki implements InterDzialki {
+public class ImplKontoUzytkownika implements InterKontoUzytkownika {
 
 
     @Override
-    public void add(Dzialki dzialki) {
+    public void add(KontoUzytkownika dostep) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.save(dzialki);
+            session.save(dostep);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -44,8 +43,8 @@ public class ImplDzialki implements InterDzialki {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            Dzialki dzialki = (Dzialki) session.load(Dzialki.class, new Long(id));
-            session.delete(dzialki);
+            KontoUzytkownika dostep = (KontoUzytkownika) session.load(KontoUzytkownika.class, new Long(id));
+            session.delete(dostep);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -61,12 +60,12 @@ public class ImplDzialki implements InterDzialki {
            
       
     @Override
-    public void update(Dzialki dzialki) {
+    public void update(KontoUzytkownika dostep) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.update(dzialki);
+            session.update(dostep);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -79,13 +78,13 @@ public class ImplDzialki implements InterDzialki {
         }
     }
 
-    public List<Dzialki> getAll() {
-        List<Dzialki> users = new ArrayList<Dzialki>();
+    public List<KontoUzytkownika> getAll() {
+        List<KontoUzytkownika> users = new ArrayList<KontoUzytkownika>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            users = session.createQuery("from Dzialki").list();
+            users = session.createQuery("from Dostep").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -98,44 +97,45 @@ public class ImplDzialki implements InterDzialki {
    
     
     
-    public Dzialki getById(Long nr_dzialki) {
-        Dzialki dzialki = null;
+    public KontoUzytkownika getById(Long nr_dzialkowicza) {
+        KontoUzytkownika dostep = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_dzialki= :nr_dzialki";
+            String queryString = "from Dostep where nr_dzialkowicza= :nr_dzialkowicza";
             Query query = session.createQuery(queryString);
-            query.setLong("nr_dzialki", nr_dzialki);
-            dzialki = (Dzialki) query.uniqueResult();
+            query.setLong("nr_dzialkowicza", nr_dzialkowicza);
+            dostep = (KontoUzytkownika) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return dzialki;
+        return dostep;
     }
     
     
-       public Dzialki getByIdDzialkowicz(Long nr_czlonkowski)
-   {
-        Dzialki dzialki = null;
+    public KontoUzytkownika getByLogin(String login) {
+        KontoUzytkownika dostep = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_czlonkowski= :nr_czlonkowski";
+            String queryString = "from Dostep where login= :login";
             Query query = session.createQuery(queryString);
-            query.setLong("nr_czlonkowski", nr_czlonkowski);
-            dzialki = (Dzialki) query.uniqueResult();
+            query.setString("login", login);
+            dostep = (KontoUzytkownika) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return dzialki;
+        return dostep;
     }
     
+   
 }
+

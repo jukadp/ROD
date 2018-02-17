@@ -40,7 +40,7 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-<schema-selection match-catalog="hostdb_allotments" match-schema="public"/>
+<schema-selection match-schema="public"/>
   <table-filter match-name="aktualizacja_danych"/>
   <table-filter match-name="dzialki"/>
   <table-filter match-name="dostep"/>

@@ -1,7 +1,7 @@
 package com.model.imp;
 
 
-import  com.model.Dzialki;
+import  com.model.Wyciagi;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -9,22 +9,21 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.utp.HibernateUtil;
-import com.model.Wlasciciel;
 
 
-import com.model.inter.InterDzialki;
+import com.model.inter.InterWyciagi;
 
 
-public class ImplDzialki implements InterDzialki {
+public class ImplWyciagi implements InterWyciagi {
 
 
     @Override
-    public void add(Dzialki dzialki) {
+    public void add(Wyciagi wyciagiJs) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.save(dzialki);
+            session.save(wyciagiJs);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -44,8 +43,8 @@ public class ImplDzialki implements InterDzialki {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            Dzialki dzialki = (Dzialki) session.load(Dzialki.class, new Long(id));
-            session.delete(dzialki);
+            Wyciagi wyciagiJs = (Wyciagi) session.load(Wyciagi.class, new Long(id));
+            session.delete(wyciagiJs);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -61,12 +60,12 @@ public class ImplDzialki implements InterDzialki {
            
       
     @Override
-    public void update(Dzialki dzialki) {
+    public void update(Wyciagi wyciagiJs) {
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            session.update(dzialki);
+            session.update(wyciagiJs);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             if (trns != null) {
@@ -79,13 +78,13 @@ public class ImplDzialki implements InterDzialki {
         }
     }
 
-    public List<Dzialki> getAll() {
-        List<Dzialki> users = new ArrayList<Dzialki>();
+    public List<Wyciagi> getAll() {
+        List<Wyciagi> users = new ArrayList<Wyciagi>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            users = session.createQuery("from Dzialki").list();
+            users = session.createQuery("from WyciagiJs").list();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -98,44 +97,23 @@ public class ImplDzialki implements InterDzialki {
    
     
     
-    public Dzialki getById(Long nr_dzialki) {
-        Dzialki dzialki = null;
+    public Wyciagi getById(Long nr_wyciagu) {
+        Wyciagi wyciagiJs = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_dzialki= :nr_dzialki";
+            String queryString = "from WyciagiJs where nr_wyciagu= :nr_wyciagu";
             Query query = session.createQuery(queryString);
-            query.setLong("nr_dzialki", nr_dzialki);
-            dzialki = (Dzialki) query.uniqueResult();
+            query.setLong("nr_wyciagu", nr_wyciagu);
+            wyciagiJs = (Wyciagi) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
             session.flush();
             session.close();
         }
-        return dzialki;
+        return wyciagiJs;
     }
-    
-    
-       public Dzialki getByIdDzialkowicz(Long nr_czlonkowski)
-   {
-        Dzialki dzialki = null;
-        Transaction trns = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            trns = session.beginTransaction();
-            String queryString = "from Dzialki where nr_czlonkowski= :nr_czlonkowski";
-            Query query = session.createQuery(queryString);
-            query.setLong("nr_czlonkowski", nr_czlonkowski);
-            dzialki = (Dzialki) query.uniqueResult();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        } finally {
-            session.flush();
-            session.close();
-        }
-        return dzialki;
-    }
-    
+   
 }

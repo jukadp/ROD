@@ -21,13 +21,12 @@ import javax.persistence.Table;
 @Table(name="odczyt_licznika"
     ,schema="public"
 )
-@JsonIdentityInfo(scope = OdczytLicznika.class,generator = ObjectIdGenerators.PropertyGenerator.class , property = "idOdczytLicznika") 
+@JsonIdentityInfo(scope = OdczytLicznika.class,generator = ObjectIdGenerators.PropertyGenerator.class , property = "nr_odczytu") 
 public class OdczytLicznika  implements java.io.Serializable {
 
 
-     private Long idOdczytLicznika;
- 
-     private Dzialki dzialki;
+     private Long nr_odczytu;
+     private Dzialki nr_dzialki;
      private int nrPomiaru;
      private String data;
      private Integer stanLicznika;
@@ -37,14 +36,14 @@ public class OdczytLicznika  implements java.io.Serializable {
     }
 
 	
-    public OdczytLicznika(Long idOdczytLicznika, Dzialki dzialki, int nrPomiaru) {
-        this.idOdczytLicznika = idOdczytLicznika;
-        this.dzialki = dzialki;
+    public OdczytLicznika(Long nr_odczytu, Dzialki nr_dzialki, int nrPomiaru) {
+        this.nr_odczytu = nr_odczytu;
+        this.nr_dzialki = nr_dzialki;
         this.nrPomiaru = nrPomiaru;
     }
-    public OdczytLicznika(Long idOdczytLicznika, Dzialki dzialki, int nrPomiaru, String data, Integer stanLicznika, Double naleznosc) {
-       this.idOdczytLicznika = idOdczytLicznika;
-       this.dzialki = dzialki;
+    public OdczytLicznika(Long nr_odczytu, Dzialki nr_dzialki, int nrPomiaru, String data, Integer stanLicznika, Double naleznosc) {
+       this.nr_odczytu = nr_odczytu;
+       this.nr_dzialki = nr_dzialki;
        this.nrPomiaru = nrPomiaru;
        this.data = data;
        this.stanLicznika = stanLicznika;
@@ -52,31 +51,23 @@ public class OdczytLicznika  implements java.io.Serializable {
     }
    
      @Id 
-
-    
- @SequenceGenerator(name="Odczyt_licznika_id_seq",
-                       sequenceName="Odczyt_licznika_id_seq",
-                       allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator="Odczyt_licznika_id_seq")
-
-    @Column(name="id_odczyt_licznika", unique=true, nullable=false)
+    @Column(name="nr_odczytu", unique=true, nullable=false)
     public Long getIdOdczytLicznika() {
-        return this.idOdczytLicznika;
+        return this.nr_odczytu;
     }
     
-    public void setIdOdczytLicznika(Long idOdczytLicznika) {
-        this.idOdczytLicznika = idOdczytLicznika;
+    public void setNrOdczytu(Long nr_odczytu) {
+        this.nr_odczytu = nr_odczytu;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="nr_dzialki", nullable=false)
     public Dzialki getDzialki() {
-        return this.dzialki;
+        return this.nr_dzialki;
     }
     
     public void setDzialki(Dzialki dzialki) {
-        this.dzialki = dzialki;
+        this.nr_dzialki = dzialki;
     }
 
     
@@ -100,7 +91,7 @@ public class OdczytLicznika  implements java.io.Serializable {
     }
 
     
-    @Column(name="stan_licznika")
+    @Column(name="stan_po_odczycie")
     public Integer getStanLicznika() {
         return this.stanLicznika;
     }

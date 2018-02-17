@@ -5,6 +5,26 @@
 	<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" media="all"  href="../css/main.css"  th:href="@{/css/main.css}" />
 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all"  
+              href="../css/editor.dataTables.min.css"  th:href="@{/css/editor.dataTables.min.css}" />
+
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+        <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+
+
 </head>
 <body>
     <div id="wrapper">
@@ -18,7 +38,7 @@
         	<div id="leftcolumn">
             <ul class="nav navbar-nav">
                 <li ><a  th:href="@{/admin}">Strona główna</a></li>     
-                <li ><a  th:href="@{/admin_zarzadzanie_dzalkami}">Zarządzanie działkami</a></li>
+                <li ><a  th:href="@{/admin_dzalkami}">Zarządzanie działkami</a></li>
                 <li class="active"><a  th:href="@{/admin_liczniki}">Liczniki</a></li>                         
                 <li ><a  th:href="@{/admin_uzytkownicy}">Użytkownicy</a></li>
                 <li ><a  th:href="@{/admin_dokumenty}">Dokumenty​</a></li>
@@ -32,7 +52,34 @@
         </div>
         <div id="contentwrap">
         <div id="content">
-        <p>LICZNIKI</p>
+       
+       
+               <table id="admin_zarz_liczniki_Table" class="display" cellspacing="0" width="100%">
+
+            <!-- Header Table -->
+            <thead class="display headAndFooter">
+                <tr>
+                    <th>Nr Odczytu</th>
+                    <th>Nr dzialki</th>
+                    <th>Odczyt</th> 
+                    <th>Data</th>
+                    <th>Stan licznika</th>
+                    <th>Należność</th>
+                </tr>
+            </thead>
+
+        </table>
+        <script src="/jQuery-2.1.4.min.js"></script>
+        <script src="/jquery.dataTables.js"></script>
+        <script src="/dataTables.bootstrap.min.js"></script>
+        <script src="/jquery.spring-friendly.js"></script>
+
+        <script src="../../js/dataTables.editor.min.js"></script>
+        <script src="../../js/admin_liczniki.js"></script>
+       
+       
+       
+       
         </div>
         </div>
         <div id="footerwrap">

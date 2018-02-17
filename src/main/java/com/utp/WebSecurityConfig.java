@@ -5,11 +5,6 @@
  */
 package com.utp;
 
-/**
- *
- * @author erdi5
- */
-
   import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("admin").password("1234").roles("ADMIN");
+                .withUser("Admin").password("1234").roles("ADMIN");
        
 
     }}

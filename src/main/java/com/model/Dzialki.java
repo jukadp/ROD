@@ -28,7 +28,7 @@ public class Dzialki  implements java.io.Serializable {
 
      private Long nrDzialki;
    
-     private Dzialkowicz dzialkowicz;
+     private Wlasciciel dzialkowicz;
    
 
      private Integer powierzchnia;
@@ -37,13 +37,13 @@ public class Dzialki  implements java.io.Serializable {
   
      private Set<Informacja> informacjas = new HashSet<Informacja>(0);
        
-     private Iban iban;
+     private NumerRachunku iban;
   @JsonProperty(access = Access.WRITE_ONLY)
-     private Set<WyciagiJs> wyciagiJses = new HashSet<WyciagiJs>(0);
+     private Set<Wyciagi> wyciagiJses = new HashSet<Wyciagi>(0);
  
-     private Set<AktualizacjaDanych> aktualizacjaDanyches = new HashSet<AktualizacjaDanych>(0);
+   
       
-     private Set<Zobowiazania> zobowiazanias = new HashSet<Zobowiazania>(0);
+     private Set<Naleznosc> zobowiazanias = new HashSet<Naleznosc>(0);
 
     public Dzialki() {
     }
@@ -52,7 +52,7 @@ public class Dzialki  implements java.io.Serializable {
     public Dzialki(Long nrDzialki) {
         this.nrDzialki = nrDzialki;
     }
-    public Dzialki(Long nrDzialki, Dzialkowicz dzialkowicz, Integer powierzchnia, Set<OdczytLicznika> odczytLicznikas, Set<Informacja> informacjas, Iban iban, Set<WyciagiJs> wyciagiJses, Set<AktualizacjaDanych> aktualizacjaDanyches, Set<Zobowiazania> zobowiazanias) {
+    public Dzialki(Long nrDzialki, Wlasciciel dzialkowicz, Integer powierzchnia, Set<OdczytLicznika> odczytLicznikas, Set<Informacja> informacjas, NumerRachunku iban, Set<Wyciagi> wyciagiJses, Set<Naleznosc> zobowiazanias) {
        this.nrDzialki = nrDzialki;
        this.dzialkowicz = dzialkowicz;
        this.powierzchnia = powierzchnia;
@@ -60,7 +60,6 @@ public class Dzialki  implements java.io.Serializable {
        this.informacjas = informacjas;
        this.iban = iban;
        this.wyciagiJses = wyciagiJses;
-       this.aktualizacjaDanyches = aktualizacjaDanyches;
        this.zobowiazanias = zobowiazanias;
     }
    
@@ -78,11 +77,11 @@ public class Dzialki  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="nr_czlonkowski")
-    public Dzialkowicz getDzialkowicz() {
+    public Wlasciciel getDzialkowicz() {
         return this.dzialkowicz;
     }
     
-    public void setDzialkowicz(Dzialkowicz dzialkowicz) {
+    public void setDzialkowicz(Wlasciciel dzialkowicz) {
         this.dzialkowicz = dzialkowicz;
     }
 
@@ -115,38 +114,30 @@ public class Dzialki  implements java.io.Serializable {
     }
 
 @OneToOne(fetch=FetchType.LAZY, mappedBy="dzialki")
-    public Iban getIban() {
+    public NumerRachunku getIban() {
         return this.iban;
     }
     
-    public void setIban(Iban iban) {
+    public void setIban(NumerRachunku iban) {
         this.iban = iban;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="dzialki")
-    public Set<WyciagiJs> getWyciagiJses() {
+    public Set<Wyciagi> getWyciagiJses() {
         return this.wyciagiJses;
     }
     
-    public void setWyciagiJses(Set<WyciagiJs> wyciagiJses) {
+    public void setWyciagiJses(Set<Wyciagi> wyciagiJses) {
         this.wyciagiJses = wyciagiJses;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="dzialki")
-    public Set<AktualizacjaDanych> getAktualizacjaDanyches() {
-        return this.aktualizacjaDanyches;
-    }
-    
-    public void setAktualizacjaDanyches(Set<AktualizacjaDanych> aktualizacjaDanyches) {
-        this.aktualizacjaDanyches = aktualizacjaDanyches;
-    }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="dzialki")
-    public Set<Zobowiazania> getZobowiazanias() {
+    public Set<Naleznosc> getZobowiazanias() {
         return this.zobowiazanias;
     }
     
-    public void setZobowiazanias(Set<Zobowiazania> zobowiazanias) {
+    public void setZobowiazanias(Set<Naleznosc> zobowiazanias) {
         this.zobowiazanias = zobowiazanias;
     }
 
